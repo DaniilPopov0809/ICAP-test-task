@@ -1,0 +1,14 @@
+@import "../../styles/variables";
+
+.footer {
+  margin-top: auto;           //for footer to bottom
+  background-color: $backgroundColor;
+}
+
+.footer__wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+

@@ -1,5 +1,5 @@
 .container {
-  min-width: 320px;
+  min-width: $mobile;
   margin-right: auto;
   margin-left: auto;
 
@@ -7,12 +7,12 @@
   padding-left: 24px;
 
   @media screen and (min-width: $tablet) {
-    min-width: 768px;
+    min-width: $tablet;
     padding-right: 48px;
     padding-left: 48px;
   }
 
   @media screen and (min-width: $desktop) {
-    width: 1280px;
+    width: $desktop;
   }
 }

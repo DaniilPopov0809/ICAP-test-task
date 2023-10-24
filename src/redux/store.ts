@@ -1,14 +1,39 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
-import authReducer from "./auth/authSlice";
+import { configureStore, ThunkAction, Action, Reducer } from "@reduxjs/toolkit"
+import { InitialState } from "../types/auth";
+import { authSlice } from "./auth/authSlice";
 import tableReducer from "./table/tableSlice";
+import storage from 'redux-persist/lib/storage';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+
+const persistConfig = {
+  key: 'auth',
+  storage
+};
 
 export const store = configureStore({
   reducer: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    auth: persistReducer(persistConfig, authSlice.reducer) as Reducer<InitialState & { _persist: any }, Action>,
     table: tableReducer,
-    auth: authReducer,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 })
 
+export const persistor = persistStore(store);
 export type AppDispatch = typeof store.dispatch
 export type RootState = ReturnType<typeof store.getState>
 export type AppThunk<ReturnType = void> = ThunkAction<
