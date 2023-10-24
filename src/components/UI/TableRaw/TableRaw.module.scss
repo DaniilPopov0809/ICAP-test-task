@@ -1,11 +1,16 @@
-// import styled from 'styled-components';
-// import { COLORS } from '../../../../../theme';
+@import '../../../styles/variables';
 
-// export const Raw = styled('tr')`
-//   &:nth-child(odd) {
-//     background-color: ${COLORS.secondaryTableRaw};
-//   }
-// `;
+.table_row {
+    
+    &:nth-child(odd) {
+        background-color: $backgroundColorWithOpacity;
+      }
+}
+
+td {
+    padding: 8px 12px;
+}
+
 
 // export const Cell = styled('td')`
 //   padding: 8px 12px;

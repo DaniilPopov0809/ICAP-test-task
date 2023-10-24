@@ -14,12 +14,12 @@ const TableAction = ({ id }: ITableActionProps) => {
     <div>
       <div>
         <Button
-          variant="outlined"
+          variant="contained" color="success"
           style={{ marginRight: '12px' }}
         >
           Edit
         </Button>
-        <Button variant="outlined" onClick={() => dispatch(tableOperation.removeFromTable(id))}>
+        <Button variant="contained" color='success' onClick={() => dispatch(tableOperation.removeFromTable(id))}>
           Delete
         </Button>
       </div>

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { tableOperation } from "./operations";
-import { ITable, InitialState } from "../../types/table";
+import { ITable, InitialState, IGetResponceTable  } from "../../types/table";
 // import { ITable } from "../../types/table";
 import { toast } from "react-toastify";
 import { handleErrors } from "../../helpers";
@@ -8,6 +8,9 @@ import { handleErrors } from "../../helpers";
 const initialState: InitialState = {
   table: [],
   tableEl: null,
+  nextPage: null,
+  prevPage: null,
+  count: null,
   status: "idle"
 };
 export const tableSlice = createSlice({
@@ -19,9 +22,13 @@ export const tableSlice = createSlice({
     .addCase(tableOperation.getTable.pending, (state) => {
       state.status = 'loading';
     })
-    .addCase(tableOperation.getTable.fulfilled, (state, action: PayloadAction<ITable[]>) => {
+    .addCase(tableOperation.getTable.fulfilled, (state, action: PayloadAction<IGetResponceTable>) => {
       state.status = 'idle';
-      state.table = action.payload;
+      const {results, count, nextPage, prevPage} = action.payload;
+      state.table = results;
+      state.count = count;
+      state.nextPage = nextPage;
+      state.prevPage = prevPage;
     })
     .addCase(tableOperation.getTable.rejected, (state, action: PayloadAction<number | undefined>) => {
       state.status = 'failed';

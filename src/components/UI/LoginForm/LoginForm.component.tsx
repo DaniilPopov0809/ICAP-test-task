@@ -1,11 +1,15 @@
-import { Button } from '@mui/material';
+import { useState } from 'react';
+import { Button, Checkbox } from '@mui/material';
 import { Formik, Form, Field, FormikHelpers, FieldProps } from 'formik';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { authOperation } from '../../../redux/auth/operations';
 import FieldInput from '../FieldInput/FieldInput';
 import { InitialValues } from '../../../types/auth';
 import { RotatingLines } from "react-loader-spinner";
+import { validationLoginForm } from '../../../schemas';
 import { selectStatusLogin } from '../../../redux/auth/authSelectors';
+import { toast } from "react-toastify";
+import styles from './LoginForm.module.scss';
 
 const initialValues: InitialValues = {
   username: '',
@@ -13,6 +17,9 @@ const initialValues: InitialValues = {
 }
 
 export const LoginForm = () => {
+  const [checkboxиBlueChecked, setCheckboxBlueChecked] = useState(false);
+  const [checkboxRedChecked, setCheckboxRedChecked] = useState(false);
+
   const status = useAppSelector(selectStatusLogin)
   const dispatch = useAppDispatch();
   const handleSubmit = async (
@@ -23,20 +30,32 @@ export const LoginForm = () => {
       username: values.username,
       password: values.password,
     };
-
+    if (checkboxиBlueChecked || checkboxRedChecked) {
     setSubmitting(true);
 
     dispatch(authOperation.login(sendData));
 
     setSubmitting(false);
     resetForm();
+    }
+    else {
+      toast.info('To enter the Matrix, please choose a pill.')
+    }
+  };
+
+  const handleCheckboxBlueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCheckboxBlueChecked(event.target.checked);
+  };
+
+  const handleCheckboxRedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCheckboxRedChecked(event.target.checked);
   };
   return (
     <Formik initialValues={initialValues}
-      // validationSchema={validationSchema} 
+      validationSchema={validationLoginForm} 
       onSubmit={handleSubmit}>
       {({ isSubmitting }) => (
-        <Form autoComplete="off">
+        <Form autoComplete="off" className={styles.form}>
           <Field name="username">
             {({ field, meta, form }: FieldProps) => (
               <FieldInput
@@ -67,20 +86,27 @@ export const LoginForm = () => {
               />
             )}
           </Field>
+          <p>Choose the pill</p>
+          <div>
+            <Checkbox onChange={handleCheckboxRedChange} checked={checkboxRedChecked} style={{ color: '#eb3795' }} />
+            <span>or</span>
+            <Checkbox onChange={handleCheckboxBlueChange} checked={checkboxиBlueChecked} style={{ color: '#204ffe' }} />
+          </div>
+
           <Button
-            variant="outlined"
+            variant="contained"
+            color='success'
             type="submit"
             disabled={isSubmitting}
-            style={{ marginTop: '20px' }}
           >
             {status === "loading" && <RotatingLines
-        strokeColor="#20fe75"
-        strokeWidth="5"
-        animationDuration="0.75"
-        width="20"
-        visible={true}
-      />}
-      Enter the Matrix
+              strokeColor="#20fe75"
+              strokeWidth="5"
+              animationDuration="0.75"
+              width="20"
+              visible={true}
+            />}
+            Enter the Matrix
           </Button>
         </Form>
       )}

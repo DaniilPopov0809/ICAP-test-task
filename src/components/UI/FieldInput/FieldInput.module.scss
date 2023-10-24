@@ -1,57 +1,65 @@
-// @import "../../../styles/variables";
+@import "../../../styles/variables";
 
 
-// .field__container {
-//   position: relative;
-//   margin-bottom: 16px;
-//   height: 68px;
+.field__container {
+  display: flex;
+  flex-direction: column;
 
-//   &::before {
-//     content: "*";
-//     position: absolute;
-//     color: $warrningRoseColor;
-//     top: 8px;
-//     left: 0;
-//     font-size: 16px;
-//   }
-// }
+  position: relative;
+  margin-bottom: 24px;
+  height: 68px;
 
-// .field__input {
-//   width: 100%;
-//   padding: 8px 0 14px 30px;
-//   margin-bottom: 4px;
+  text-align: start;
 
-//   background-color: transparent;
-//   border: none;
-//   border-bottom: 1px solid $whiteColor;
+  &::before {
+    content: "*";
+    position: absolute;
+    color: $warrningRoseColor;
+    top: 4px;
+    left: 0;
+    font-size: 16px;
+  }
+}
 
-//   color: $whiteColor;
+.label {
+  padding-left: 20px;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
 
-//   transition: border-color $animation;
+.field__input {
+  padding: 12px 0 12px 20px;
+  margin-bottom: 4px;
 
-//   &::placeholder {
-//     color: $lightGreyColor;
-//   }
+  background-color: transparent;
+  border: none;
+  border: 1px solid $backgroundColor;
+  border-radius: 10px;
 
-//   &:hover,
-//   &:focus {
-//     border-color: $accentBlueColor;
-//     outline: none;
-//   }
-// }
+  color: $whiteColor;
 
-// .field__error {
-//   font-size: 13px;
-//   letter-spacing: 0.01625rem;
-//   line-height: 1, 85;
-//   color: $warrningRoseColor;
-//   animation: errorAnimation 0.3s ease-in-out forwards;
-// }
+  transition: border-color $animation;
 
-// .error {
-//   border-color: $warrningRoseColor;
-// }
+  &::placeholder {
+    color: $lightGreyColor;
+  }
 
-// .success {
-//   border-color: $successGreenColor;
-// }
+  &:hover,
+  &:focus {
+    // border-color: $accentBlueColor;
+    outline: none;
+  }
+}
+
+.field__error {
+  font-size: 13px;
+  letter-spacing: 0.01625rem;
+  line-height: 1, 85;
+  color: $warrningRoseColor;
+  animation: errorAnimation 0.3s ease-in-out forwards;
+}
+
+.error {
+  border-color: $warrningRoseColor;
+}
+

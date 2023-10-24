@@ -3,8 +3,11 @@ html {
 }
 
 body {
+font-family: $bodyFont;
 font-size: 1rem;
 margin: 0;
+color: $whiteColor;
+background-color: $blackColor;
 }
 
 h1,

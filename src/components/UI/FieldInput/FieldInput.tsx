@@ -26,15 +26,11 @@ const FieldInput = ({
   const { form, ...inputProps } = props;
   return (
     <div className={styles.field__container}>
-       {label && <label htmlFor={name}>{label}:</label>}
+      {label && <label className={styles.label} htmlFor={name}>{label}:</label>}
       <input
-        className={`mainFontSize ${styles.field__input} ${
-          meta.touched && meta.error
-            ? styles.error
-            : meta.touched
-            ? styles.success
-            : ""
-        }`}
+        className={`mainFontSize ${styles.field__input} ${meta.touched && meta.error
+            ? styles.error : ""
+          }`}
         type={type}
         id={id}
         placeholder={placeholder}

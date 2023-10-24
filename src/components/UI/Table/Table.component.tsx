@@ -4,12 +4,12 @@ import { TableRaw } from "../TableRaw/TableRaw.component";
 import {useEffect} from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { tableOperation } from "../../../redux/table/operations";
-import { selecDataTable } from "../../../redux/table/tableSelectors";
+import { selectDataTable } from "../../../redux/table/tableSelectors";
 
 
 const Table = () => {
   const dispatch = useAppDispatch();
-  const tableData = useAppSelector(selecDataTable);
+  const tableData = useAppSelector(selectDataTable);
 
   useEffect(() => {
     dispatch(tableOperation.getTable());

@@ -1,5 +1,6 @@
 import TableAction from "../TableAction/TableAction.component";
 import { ITable } from "../../../types/table";
+import styles from './TableRaw.module.scss';
 
 
 export const TableRaw = ({
@@ -10,7 +11,7 @@ export const TableRaw = ({
   phone_number,
   address
 }: ITable) => (
-  <tr>
+  <tr className={styles.table_row}>
     <td headers="name">{name}</td>
     <td headers="email">{email}</td>
     <td headers="birthday_date">{birthday_date}</td>

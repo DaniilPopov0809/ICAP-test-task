@@ -12,17 +12,18 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.header__wrap}`}>
-        <a className={styles.logo} href="/">
+        <a className={styles.header__logo} href="/">
           {/* <span className={styles.logo__partOne}>TaB</span><span className={styles.logo__partTwo}>le</span> */}
           MaTRiX
         </a>
         {isLoggedIn && <div className={styles.header__menu}>
           <p className={styles.header__description}>Welcome, Neo!</p>
           <Button
-            variant="outlined"
+            variant="contained"
+            color='error'
             type="button"
             onClick={() => dispatch(logout(false))}
-          >Logout</Button>
+          >Disconnect</Button>
         </div>}
       </div>
     </header>
