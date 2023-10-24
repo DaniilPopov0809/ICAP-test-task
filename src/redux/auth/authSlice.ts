@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { authOperation } from "./operations";
 import { InitialState } from "../../types/auth";
 import { toast } from 'react-toastify';
+import { handleErrors } from "../../helpers";
 
 const initialState: InitialState = {
   isLoggedIn: false,
@@ -18,17 +19,21 @@ export const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => builder
-    .addCase(authOperation.login.pending, state => state)
+    .addCase(authOperation.login.pending, state => {
+      state.status = 'loading'})
     .addCase(authOperation.login.fulfilled, (state) => {
-      // if (action.payload.status === 200) {
-        state.isLoggedIn = true;
+      state.status = 'idle';  
+      state.isLoggedIn = true;
         toast.success('Welcome to the Matrix, Neo.');
-      // } else {
-      //   toast.error('The Matrix awaits you. Try again.');
-      // }
     })
-    .addCase(authOperation.login.rejected, (state) => {
+    .addCase(authOperation.login.rejected, (state, action: PayloadAction<number| undefined>) => {
       state.status = 'failed';
+      if (action.payload){
+        toast.error(handleErrors(action.payload));
+      }
+      else {
+        toast.error('Unknown Error');
+      }
     }),
 });
 

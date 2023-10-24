@@ -1,9 +1,11 @@
 import { Button } from '@mui/material';
 import { Formik, Form, Field, FormikHelpers, FieldProps } from 'formik';
-import { useAppDispatch } from '../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { authOperation } from '../../../redux/auth/operations';
 import FieldInput from '../FieldInput/FieldInput';
 import { InitialValues } from '../../../types/auth';
+import { RotatingLines } from "react-loader-spinner";
+import { selectStatusLogin } from '../../../redux/auth/authSelectors';
 
 const initialValues: InitialValues = {
   username: '',
@@ -11,6 +13,7 @@ const initialValues: InitialValues = {
 }
 
 export const LoginForm = () => {
+  const status = useAppSelector(selectStatusLogin)
   const dispatch = useAppDispatch();
   const handleSubmit = async (
     values: InitialValues,
@@ -70,7 +73,14 @@ export const LoginForm = () => {
             disabled={isSubmitting}
             style={{ marginTop: '20px' }}
           >
-            Enter the Matrix
+            {status === "loading" && <RotatingLines
+        strokeColor="#20fe75"
+        strokeWidth="5"
+        animationDuration="0.75"
+        width="20"
+        visible={true}
+      />}
+      Enter the Matrix
           </Button>
         </Form>
       )}
