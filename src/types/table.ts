@@ -9,5 +9,6 @@ export interface ITable {
 
 export interface InitialState {
     table: ITable[];
+    tableEl: ITable | null;
     status: "idle" | "loading" | "failed",
 }

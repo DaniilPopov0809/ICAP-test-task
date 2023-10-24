@@ -4,14 +4,14 @@ import { ITable } from '../../../types/table';
 import { IError } from '../../../types/common';
 
 
-const getById = createAsyncThunk<ITable, number, { rejectValue: IError }>('table/getById', async (id, thunkAPI) => {
+const removeFromTable = createAsyncThunk<ITable, number, { rejectValue: IError }>('table/delete', async (id, thunkAPI) => {
     try {
-        const {data} = await axios.get(`/table/${id}`);
-        return data.result;
+        const {data} = await axios.delete(`/table/${id}`);
+        return data;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
         return thunkAPI.rejectWithValue(error.message);
     }
 });
 
-export default getById;
+export default removeFromTable;
