@@ -13,7 +13,6 @@ const Header = () => {
     <header className={styles.header}>
       <div className={`container ${styles.header__wrap}`}>
         <a className={styles.header__logo} href="/">
-          {/* <span className={styles.logo__partOne}>TaB</span><span className={styles.logo__partTwo}>le</span> */}
           MaTRiX
         </a>
         {isLoggedIn && <div className={styles.header__menu}>
