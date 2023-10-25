@@ -1,24 +1,16 @@
 import { TableRaw } from "../TableRaw/TableRaw.component";
-// import { ITodosProps } from '../../../../types/todo.types';
-// import { Table, Th, Thead } from './TodoTable.styled';
-import {useEffect} from "react";
-import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
-import { tableOperation } from "../../../redux/table/operations";
-import { selectDataTable, selectVisibleRaw, selectFilter } from "../../../redux/table/tableSelectors";
+import { useAppSelector } from "../../../hooks/redux";
+import { selectVisibleRaw} from "../../../redux/table/tableSelectors";
 import styles from "./Table.module.scss";
 
 
 const Table = () => {
-  const dispatch = useAppDispatch();
   const visibleRaw = useAppSelector(selectVisibleRaw);
-
-  useEffect(() => {
-    dispatch(tableOperation.getTable());
-  }, [dispatch]);
 
   return visibleRaw.length === 0 ? (
     <p className={styles.notFound}>Not found</p>
   ) : (
+    <div className={styles.wrap}>
     <table>
       <thead>
         <tr>
@@ -56,6 +48,7 @@ const Table = () => {
         ))}
       </tbody>
     </table>
+    </div>
   );
 };
 

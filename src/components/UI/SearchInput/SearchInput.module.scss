@@ -1,3 +1,18 @@
+@import "../../../styles/variables";
+
+.searchInput {
+  height: 36px;
+  padding-left: 15px;
+  background-color: $blackColor;
+  color: $whiteColor;
+  margin: 0;
+  font-family: 'Roboto';
+  border: 2px solid $backgroundColor;
+  border-radius: 6px;
+  font-size: 16px;
+  margin-left: 12px;
+  outline: none;
+}
 // import styled from 'styled-components';
 // import { StyledInput } from '../FieldInput/FieldInput.styled';
 // import { COLORS } from '../../../theme';

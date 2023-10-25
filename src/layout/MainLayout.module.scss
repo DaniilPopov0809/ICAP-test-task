@@ -5,19 +5,18 @@
   align-items: center;
   justify-content: center;
   padding: 24px 0;
-
 }
 
 .isLogin {
   content: "";
-background-image: url('../../public/matrix.svg');
-color: $whiteColor;
+  background-image: url("../../public/matrix.svg");
+  color: $whiteColor;
+  background-size: contain;
 }
 
-.mainContainer{
+.mainContainer {
   display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    overflow: hidden;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
 }
-    

@@ -3,6 +3,7 @@ import { useAppContext } from '../../../hooks/useAppContext';
 import MainModal from "../MainModal/MainModal";
 import TableForm from "../TableForm/TableForm.component";
 import  SearchInput from "../SearchInput/SearchInput.component";
+import styles from "./AppBar.module.scss";
 
 const AppBar = () => {
     const { isModalOpen, setIsModalOpen, isEdit, setIsEdit } = useAppContext();
@@ -17,7 +18,7 @@ const AppBar = () => {
     }
     return (
         <>
-        <div>
+        <div className={styles.bar__wrap}>
             <Button variant="contained" color='success' onClick={() => handleOpenModal()}>
                 Add
             </Button>

@@ -3,6 +3,7 @@ import { useDebounce } from 'usehooks-ts';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { selectFilter } from '../../../redux/table/tableSelectors';
 import { filterTable } from '../../../redux/table/filterSlice';
+import styles from './SearchInput.module.scss';
 
 const SearchInput = () => {
   const filter = useAppSelector(selectFilter);
@@ -22,6 +23,7 @@ const SearchInput = () => {
 
   return (
     <input
+      className={styles.searchInput}
       type="text"
       placeholder="Search..."
       value={searchTerm}

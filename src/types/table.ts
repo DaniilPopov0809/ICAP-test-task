@@ -10,8 +10,8 @@ export interface ITable {
 export interface InitialState {
     table: ITable[];
     tableEl: ITable | null;
-    nextPage: string | null,
-    prevPage: string | null,
+    next: string | null,
+    previous: string | null,
     count: number | null,
     status: "idle" | "loading" | "failed",
 }
