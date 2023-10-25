@@ -1,16 +1,4 @@
-// import styled from 'styled-components';
-// import { SCREEN_SIZES } from '../../../../../theme';
-
-// export const ActionContainer = styled('div')`
-//   display: flex;
-//   justify-content: space-between;
-
-//   @media screen and (min-width: ${SCREEN_SIZES.desktop}) {
-//     justify-content: center;
-//     align-items: center;
-//   }
-// `;
-
-// export const ButtonContainer = styled('div')`
-//   display: flex;
-// `;
+.action__wrap {
+    display: flex;
+    flex-wrap: nowrap;
+}

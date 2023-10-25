@@ -2,6 +2,9 @@
 
 Simple Web-app with login.
 
+***Data for test:
+login:   testuser
+password: testpassword123
 
 ## Technology stack:
 

@@ -4,6 +4,7 @@ import { useAppContext } from '../../../hooks/useAppContext';
 import { tableOperation } from '../../../redux/table/operations';
 import MainModal from '../MainModal/MainModal';
 import TableForm from '../TableForm/TableForm.component';
+import styles from './TableAction.module.scss';
 
 interface ITableActionProps {
   id: number;
@@ -24,8 +25,8 @@ const TableAction = ({ id }: ITableActionProps) => {
   }
 
   return (
-    <div>
-      <div>
+    <>
+      <div className={styles.action__wrap}>
         <Button
           variant="contained" color="success"
           onClick={()=> handleClickEdit()}
@@ -38,7 +39,7 @@ const TableAction = ({ id }: ITableActionProps) => {
         </Button>
       </div>
       <MainModal open={isModalOpen} onClose={handleCloseModal} children={<TableForm isEdit={isEdit} onClose={handleCloseModal}/>}/>
-    </div>
+    </>
   );
 };
 
