@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { tableOperation } from "./operations";
 import { ITable, InitialState, IGetResponceTable  } from "../../types/table";
-// import { ITable } from "../../types/table";
 import { toast } from "react-toastify";
 import { handleErrors } from "../../helpers";
 

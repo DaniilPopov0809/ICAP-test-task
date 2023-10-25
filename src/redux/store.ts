@@ -1,6 +1,7 @@
 import { configureStore, ThunkAction, Action, Reducer } from "@reduxjs/toolkit"
 import { InitialState } from "../types/auth";
 import { authSlice } from "./auth/authSlice";
+import { filterSlice } from "./table/filterSlice";
 import tableReducer from "./table/tableSlice";
 import storage from 'redux-persist/lib/storage';
 import {
@@ -24,6 +25,7 @@ export const store = configureStore({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     auth: persistReducer(persistConfig, authSlice.reducer) as Reducer<InitialState & { _persist: any }, Action>,
     table: tableReducer,
+    filter: filterSlice.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

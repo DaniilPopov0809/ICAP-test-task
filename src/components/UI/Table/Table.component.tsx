@@ -4,18 +4,21 @@ import { TableRaw } from "../TableRaw/TableRaw.component";
 import {useEffect} from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { tableOperation } from "../../../redux/table/operations";
-import { selectDataTable } from "../../../redux/table/tableSelectors";
+import { selectDataTable, selectVisibleRaw, selectFilter } from "../../../redux/table/tableSelectors";
+import styles from "./Table.module.scss";
 
 
 const Table = () => {
   const dispatch = useAppDispatch();
-  const tableData = useAppSelector(selectDataTable);
+  const visibleRaw = useAppSelector(selectVisibleRaw);
 
   useEffect(() => {
     dispatch(tableOperation.getTable());
   }, [dispatch]);
 
-  return (
+  return visibleRaw.length === 0 ? (
+    <p className={styles.notFound}>Not found</p>
+  ) : (
     <table>
       <thead>
         <tr>
@@ -26,34 +29,34 @@ const Table = () => {
             Email
           </th>
           <th id="birthdayDate" scope="col">
-          Birthday
+            Birthday
           </th>
           <th id="phoneNumber" scope="col">
-          Phone
+            Phone
           </th>
           <th id="address" scope="col">
-          Address
+            Address
           </th>
           <th id="action" scope="col">
-          Action
+            Action
           </th>
         </tr>
       </thead>
       <tbody>
-        {tableData?.map((data) => (
-        <TableRaw
-          key={data.id}
-          id={data.id}
-          name={data.name}
-          email={data.email}
-          birthday_date={data.birthday_date}
-          phone_number={data.phone_number}
-          address={data.address}
-        />
-      ))}
+        {visibleRaw?.map((data) => (
+          <TableRaw
+            key={data.id}
+            id={data.id}
+            name={data.name}
+            email={data.email}
+            birthday_date={data.birthday_date}
+            phone_number={data.phone_number}
+            address={data.address}
+          />
+        ))}
       </tbody>
     </table>
   );
-}
+};
 
 export default Table;
