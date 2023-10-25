@@ -25,7 +25,7 @@ const PaginationTable = () => {
 
 
     return visibleData.length !== 0 && (
-        <div style={{display: 'flex', justifyContent: 'center'}}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
             <div className={styles.pagination__wrap}>
                 <Pagination
                     count={countPages}
@@ -33,10 +33,13 @@ const PaginationTable = () => {
                     variant='text'
                     page={page}
                     color='standard'
-                    onChange={(event, currentPage) => handlePageChange(currentPage)}
+                    onChange={(event, currentPage) => {
+                        console.log(event);
+                        handlePageChange(currentPage);
+                    }}
                 />
             </div >
-            </div>
+        </div>
     );
 }
 
