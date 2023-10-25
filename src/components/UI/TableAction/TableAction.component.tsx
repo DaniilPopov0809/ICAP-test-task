@@ -1,7 +1,9 @@
 import { Button } from '@mui/material';
 import { useAppDispatch } from '../../../hooks/redux';
+import { useAppContext } from '../../../hooks/useAppContext';
 import { tableOperation } from '../../../redux/table/operations';
-
+import MainModal from '../MainModal/MainModal';
+import TableForm from '../TableForm/TableForm.component';
 
 interface ITableActionProps {
   id: number;
@@ -9,12 +11,24 @@ interface ITableActionProps {
 
 const TableAction = ({ id }: ITableActionProps) => {
   const dispatch = useAppDispatch();
+  const { isModalOpen, setIsModalOpen, isEdit, setIsEdit } = useAppContext(); 
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleClickEdit = async () =>{
+    await dispatch(tableOperation.getById(id));
+    await setIsEdit(true);
+    setIsModalOpen(true);
+  }
 
   return (
     <div>
       <div>
         <Button
           variant="contained" color="success"
+          onClick={()=> handleClickEdit()}
           style={{ marginRight: '12px' }}
         >
           Edit
@@ -23,6 +37,7 @@ const TableAction = ({ id }: ITableActionProps) => {
           Delete
         </Button>
       </div>
+      <MainModal open={isModalOpen} onClose={handleCloseModal} children={<TableForm isEdit={isEdit} onClose={handleCloseModal}/>}/>
     </div>
   );
 };

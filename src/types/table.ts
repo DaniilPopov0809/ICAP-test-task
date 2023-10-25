@@ -18,9 +18,4 @@ export interface InitialState {
 
 export type IGetResponceTable = Omit<InitialState,  'tableEl' | 'status' | 'table'> & {results: ITable[]};
 
-// export type IGetResponceTable = {
-//     results: ITable[];
-//     nextPage: string | null,
-//     prevPgae: string | null,
-//     count: string | null,
-// }
+export type InitialValuesTableForm = Omit<ITable, 'id'>; 
